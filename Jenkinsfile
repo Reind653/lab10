@@ -9,11 +9,8 @@ pipeline {
         stage('Setup') {
             steps {
                 script {
-                    // Create a virtual environment if it doesn't exist and install dependencies
-                    if (!fileExists("${env.WORKSPACE}\\${VIRTUAL_ENV}")) {
-                        bat "C:\\Users\\ENVY\\AppData\\Local\\Programs\\Python\\Python312\\python.exe ${VIRTUAL_ENV}"
-                    }
-                    // Activate the virtual environment and install requirements
+                    // Use the full path to Python and the correct command to create the virtual environment
+                    bat "C:\\Users\\ENVY\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -m venv ${VIRTUAL_ENV}"
                     bat "${VIRTUAL_ENV}\\Scripts\\activate && pip install -r requirements.txt"
                 }
             }
